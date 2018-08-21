@@ -12,7 +12,7 @@ abstract class Program[F[_]: DeviceDatabase: CampaignDatabase: AdSelection: Flat
   private val deviceDatabase = implicitly[DeviceDatabase[F]]
   private val adSelection = implicitly[AdSelection[F]]
 
-  def serveAd(adRequest: AdRequest, now: Instant): F[Option[AdResponse]] =
+  def serveAd(adRequest: AdRequest, now: Instant = Instant.now()): F[Option[AdResponse]] =
     for {
       campaigns <- campaignDatabase.findCampaigns(adRequest.countryCode)
       deviceOpt <- deviceDatabase.getDeviceHistory(adRequest.deviceId)
