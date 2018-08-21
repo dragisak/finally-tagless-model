@@ -4,6 +4,7 @@ import java.time.Instant
 import java.util.concurrent.{ConcurrentHashMap, ConcurrentMap}
 
 import cats.Id
+import monix.eval.Task
 
 trait DeviceDatabase[F[_]] {
 
@@ -27,4 +28,11 @@ object DeviceDatabaseMock extends DeviceDatabase[Id] {
           )
           .getOrElse(DeviceHistory(dId))
     )
+}
+
+class DeviceDatabaseMonixMock(dummpyDb: DeviceDatabase[Id]) extends DeviceDatabase[Task] {
+  import Transformers._
+
+  override def getDeviceHistory(deviceId: DeviceId): Task[Option[DeviceHistory]] =
+    toT(dummpyDb.getDeviceHistory(deviceId))
 }
