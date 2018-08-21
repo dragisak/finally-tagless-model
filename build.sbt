@@ -19,6 +19,8 @@ libraryDependencies ++= List(
   "org.http4s" %% "http4s-blaze-client" % http4sVersion
 )
 
+addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.7")
+
 scalacOptions ++= List(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8",                // Specify character encoding used by source files.

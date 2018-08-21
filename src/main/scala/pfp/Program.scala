@@ -2,11 +2,11 @@ package pfp
 
 import java.time.Instant
 
-import cats.FlatMap
+import cats.{FlatMap, Id}
 import cats.syntax.flatMap._
 import cats.syntax.functor._
 
-abstract class Program[F[_]: DeviceDatabase: CampaignDatabase: AdSelection: FlatMap] {
+class Program[F[_]: DeviceDatabase: CampaignDatabase: AdSelection: FlatMap] {
 
   private val campaignDatabase = implicitly[CampaignDatabase[F]]
   private val deviceDatabase = implicitly[DeviceDatabase[F]]
@@ -21,5 +21,15 @@ abstract class Program[F[_]: DeviceDatabase: CampaignDatabase: AdSelection: Flat
       selected.map {
         case (selectedCampaign, selectedCreative) => AdResponse(selectedCampaign, selectedCreative)
       }
+
+}
+
+object Program {
+
+  private implicit val dumbCampaignDatabasse = CampaignDatabaseMock
+  private implicit val dumnbDeviceDatabase = DeviceDatabaseMock
+  private implicit val syncSelection = AdSelectionDumb
+
+  val dumbProgram = new Program[Id]
 
 }
