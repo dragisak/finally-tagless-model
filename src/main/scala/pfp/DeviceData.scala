@@ -1,18 +1,17 @@
 package pfp
 
 import java.time.Instant
-import java.util.UUID
 
 case class DeviceData(
-  id: UUID,
-  creativesSeen: Map[UUID, Instant]
+  id: DeviceId,
+  creativesSeen: Map[CreativeId, Instant]
 )
 
 object DeviceData extends JsonEncoders {
   import io.circe._
   import io.circe.generic.semiauto._
-  import io.circe.java8.time._
 
+  def apply(id: DeviceId): DeviceData = DeviceData(id, Map.empty)
   implicit val deviceDataDecoder: Decoder[DeviceData] = deriveDecoder[DeviceData]
   implicit val deviceDataEncoder: Encoder[DeviceData] = deriveEncoder[DeviceData]
 }

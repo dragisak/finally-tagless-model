@@ -1,11 +1,9 @@
 package pfp
 
-import java.util.UUID
-
 import cats.data.NonEmptyList
 
 case class Campaign(
-  id: UUID,
+  id: CampaignId,
   countryCode: String,
   creatives: NonEmptyList[Creative]
 )

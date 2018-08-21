@@ -1,9 +1,7 @@
 package pfp
 
-import java.util.UUID
-
 case class Creative(
-  id: UUID,
+  id: CreativeId,
   payload: String
 )
 

@@ -1,7 +1,7 @@
 package pfp
 
 case class AdRequest(
-  deviceId: String,
+  deviceId: DeviceId,
   countryCode: String
 )
 
