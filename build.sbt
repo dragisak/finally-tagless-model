@@ -2,16 +2,17 @@ name := "finally-tagless-model"
 
 version := "0.1"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.7"
 
-val http4sVersion = "0.19.0-M1"
-val circeVersion = "0.10.0-M2"
+val http4sVersion = "0.20.0-M3"
+val circeVersion = "0.10.1"
 
 
 libraryDependencies ++= List(
-  "org.typelevel" %% "cats-core" % "1.2.0",
-  "org.typelevel" %% "cats-effect" % "1.0.0-RC3",
-  "io.monix" %% "monix" % "3.0.0-RC1",
+  "org.typelevel" %% "cats-core" % "1.4.0",
+  "org.typelevel" %% "cats-mtl-core" % "0.4.0",
+  "org.typelevel" %% "cats-effect" % "1.0.0",
+  "io.monix" %% "monix" % "3.0.0-RC2",
   "io.circe" %% "circe-generic" % circeVersion,
   "org.http4s" %% "http4s-circe" % http4sVersion,
   "org.http4s" %% "http4s-dsl" % http4sVersion,
